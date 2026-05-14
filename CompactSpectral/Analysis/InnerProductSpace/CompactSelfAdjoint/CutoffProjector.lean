@@ -49,7 +49,7 @@ noncomputable def largeEigenspace (T : E →L[𝕜] E) (ε : ℝ) : Submodule �
 
 /-- For a compact self-adjoint operator, `largeEigenspace` is finite-dimensional
 (hence complete). -/
-theorem finiteDimensional_largeEigenspace_of_isCompactOperator_of_isSelfAdjoint
+lemma finiteDimensional_largeEigenspace_of_isCompactOperator_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
     FiniteDimensional 𝕜 (largeEigenspace (𝕜 := 𝕜) (E := E) T ε) := by
@@ -68,18 +68,18 @@ noncomputable def largeEigenspaceProjector
     finiteDimensional_largeEigenspace_of_isCompactOperator_of_isSelfAdjoint
       (𝕜 := 𝕜) (E := E) T hT hTc hε
   exact (largeEigenspace (𝕜 := 𝕜) (E := E) T ε).starProjection
-theorem isStarProjection_largeEigenspaceProjector
+lemma isStarProjection_largeEigenspaceProjector
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
     IsStarProjection (largeEigenspaceProjector (𝕜 := 𝕜) (E := E) T hT hTc hε) := by
   classical
   simp [largeEigenspaceProjector, isStarProjection_starProjection]
-theorem isSelfAdjoint_largeEigenspaceProjector
+lemma isSelfAdjoint_largeEigenspaceProjector
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
     IsSelfAdjoint (largeEigenspaceProjector (𝕜 := 𝕜) (E := E) T hT hTc hε) := by
   exact (isStarProjection_largeEigenspaceProjector (𝕜 := 𝕜) (E := E) T hT hTc hε).isSelfAdjoint
-theorem largeEigenspaceProjector_idem
+lemma largeEigenspaceProjector_idem
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
     largeEigenspaceProjector (𝕜 := 𝕜) (E := E) T hT hTc hε ∘L
@@ -87,7 +87,7 @@ theorem largeEigenspaceProjector_idem
       largeEigenspaceProjector (𝕜 := 𝕜) (E := E) T hT hTc hε := by
   simpa [IsStarProjection.isIdempotentElem] using
     (isStarProjection_largeEigenspaceProjector (𝕜 := 𝕜) (E := E) T hT hTc hε).isIdempotentElem
-theorem range_largeEigenspaceProjector
+lemma range_largeEigenspaceProjector
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
     LinearMap.range (largeEigenspaceProjector (𝕜 := 𝕜) (E := E) T hT hTc hε).toLinearMap =
@@ -100,7 +100,7 @@ theorem range_largeEigenspaceProjector
   simp only [largeEigenspaceProjector]
   exact Submodule.range_starProjection (U := largeEigenspace (𝕜 := 𝕜) (E := E) T ε)
 /-! ### Cutoff projectors commute with the operator -/
-theorem largeEigenspaceProjector_comp
+lemma largeEigenspaceProjector_comp
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
     largeEigenspaceProjector (𝕜 := 𝕜) (E := E) T hT hTc hε ∘L T =

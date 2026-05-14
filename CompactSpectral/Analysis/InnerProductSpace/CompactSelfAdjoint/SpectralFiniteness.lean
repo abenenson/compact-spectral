@@ -122,7 +122,7 @@ norm is bounded below by `ε > 0`.
 This is a standard compact spectral theorem ingredient: since distinct eigenspaces are orthogonal,
 such a sequence would give an orthonormal family `e n` with `‖T (e n)‖ = ‖μ n‖ ≥ ε`, contradicting
 that compact operators send orthonormal sequences to norm-null sequences. -/
-theorem not_exists_injective_hasEigenvalue_norm_ge_of_isCompactOperator_of_isSelfAdjoint
+lemma not_exists_injective_hasEigenvalue_norm_ge_of_isCompactOperator_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
     ¬ ∃ μ : ℕ → 𝕜, Function.Injective μ ∧ (∀ n, ε ≤ ‖μ n‖) ∧
@@ -289,7 +289,7 @@ theorem tendsto_norm_of_injective_hasEigenvalue_of_isCompactOperator_of_isSelfAd
   simpa [Real.norm_eq_abs, abs_of_nonneg (norm_nonneg _), sub_zero] using this
 /-! ### Isolation of nonzero eigenvalues -/
 /-- For a compact self-adjoint operator, any nonzero eigenvalue is isolated among eigenvalues. -/
-theorem exists_ball_hasEigenvalue_eq_of_isCompactOperator_of_isSelfAdjoint
+lemma exists_ball_hasEigenvalue_eq_of_isCompactOperator_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {μ : 𝕜} (hμ0 : μ ≠ 0)
     (hμeig : Module.End.HasEigenvalue (T : E →ₗ[𝕜] E) μ) :
@@ -382,7 +382,7 @@ theorem exists_ball_hasEigenvalue_eq_of_isCompactOperator_of_isSelfAdjoint
 /-! ### Finite-dimensionality of large spectral subspaces -/
 /-- For a compact self-adjoint operator, the sum (iSup) of eigenspaces corresponding to eigenvalues
 with `‖μ‖ ≥ ε` is finite-dimensional. -/
-theorem finiteDimensional_iSup_eigenspace_norm_ge
+lemma finiteDimensional_iSup_eigenspace_norm_ge
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
     let t : Module.End 𝕜 E := (T : E →ₗ[𝕜] E)

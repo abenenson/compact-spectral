@@ -28,7 +28,7 @@ variable {𝕜 : Type*} [RCLike 𝕜]
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [CompleteSpace E]
 
 
-theorem largeEigenspace_mem_invtSubmodule_of_isCompactOperator_of_isSelfAdjoint
+lemma largeEigenspace_mem_invtSubmodule_of_isCompactOperator_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
     let t : Module.End 𝕜 E := (T : E →ₗ[𝕜] E)
@@ -60,7 +60,7 @@ theorem largeEigenspace_mem_invtSubmodule_of_isCompactOperator_of_isSelfAdjoint
   have hU' : (⨆ i : s.Elem, t.eigenspace i.1) ∈ t.invtSubmodule := by
     simpa [Finset.sup_univ_eq_iSup] using h_sup
   simpa [largeEigenspace, t, s] using hU'
-theorem largeEigenspace_orthogonal_mem_invtSubmodule_of_isCompactOperator_of_isSelfAdjoint
+lemma largeEigenspace_orthogonal_mem_invtSubmodule_of_isCompactOperator_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
     let t : Module.End 𝕜 E := (T : E →ₗ[𝕜] E)
@@ -74,7 +74,7 @@ theorem largeEigenspace_orthogonal_mem_invtSubmodule_of_isCompactOperator_of_isS
   have hSymm : t.IsSymmetric := (ContinuousLinearMap.isSelfAdjoint_iff_isSymmetric (A := T)).1 hT
   exact hSymm.orthogonalComplement_mem_invtSubmodule (p := largeEigenspace (𝕜 := 𝕜) (E := E) T ε) hU
 /-! ### Finite-rank approximation in operator norm -/
-theorem finiteDimensional_range_comp_largeEigenspaceProjector
+lemma finiteDimensional_range_comp_largeEigenspaceProjector
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
     FiniteDimensional 𝕜
@@ -108,7 +108,7 @@ theorem finiteDimensional_range_comp_largeEigenspaceProjector
   exact Submodule.finiteDimensional_of_le
     (S₁ := LinearMap.range ((T ∘L P : E →L[𝕜] E) : E →ₗ[𝕜] E)) (S₂ := U) hrange_le
 set_option backward.isDefEq.respectTransparency false in
-theorem opNorm_sub_comp_largeEigenspaceProjector_le
+lemma opNorm_sub_comp_largeEigenspaceProjector_le
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (hTc : IsCompactOperator (T : E → E))
     {ε : ℝ} (hε : 0 < ε) :
     ‖T - T ∘L largeEigenspaceProjector (𝕜 := 𝕜) (E := E) T hT hTc hε‖ ≤ ε := by

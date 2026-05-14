@@ -30,7 +30,7 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [Complete
 
 /-! ### Weak continuity of the norm on a weakly-closed ball -/
 
-theorem continuousOn_weakClosedBall_norm_apply_of_isCompactOperator
+lemma continuousOn_weakClosedBall_norm_apply_of_isCompactOperator
     (T : E →L[𝕜] E) (hTc : IsCompactOperator (T : E → E)) (r : ℝ) :
     ContinuousOn (fun x : WeakSpace 𝕜 E => ‖T (x : E)‖)
       (weakClosedBall (𝕜 := 𝕜) (E := E) r) := by

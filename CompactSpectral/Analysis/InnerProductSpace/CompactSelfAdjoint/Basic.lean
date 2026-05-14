@@ -43,7 +43,7 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E]
 noncomputable def compress (T : E →L[𝕜] E) (V : Submodule 𝕜 E) [CompleteSpace V] : V →L[𝕜] V :=
   V.orthogonalProjection ∘L T ∘L V.subtypeL
 
-theorem coe_compress_apply_of_invariant (T : E →L[𝕜] E) (V : Submodule 𝕜 E) [CompleteSpace V]
+lemma coe_compress_apply_of_invariant (T : E →L[𝕜] E) (V : Submodule 𝕜 E) [CompleteSpace V]
     (hV : ∀ v ∈ V, T v ∈ V) (v : V) :
     (compress (T := T) (V := V) v : E) = T v := by
   classical
@@ -54,7 +54,7 @@ theorem coe_compress_apply_of_invariant (T : E →L[𝕜] E) (V : Submodule 𝕜
   have hw' : (V.orthogonalProjection (T (v : E)) : E) = T v := by
     simpa [w] using congrArg (fun x : V => (x : E)) hw
   simpa [compress, ContinuousLinearMap.comp_apply, Submodule.subtypeL_apply] using hw'
-theorem hasEigenvector_of_hasEigenvector_compress_of_invariant
+lemma hasEigenvector_of_hasEigenvector_compress_of_invariant
     (T : E →L[𝕜] E) (V : Submodule 𝕜 E) [CompleteSpace V]
     (hV : ∀ v ∈ V, T v ∈ V) {μ : 𝕜} {v : V}
     (hv : Module.End.HasEigenvector ((compress (T := T) (V := V)) : V →ₗ[𝕜] V) μ v) :
@@ -75,7 +75,7 @@ theorem hasEigenvector_of_hasEigenvector_compress_of_invariant
   have hproj : (compress (T := T) (V := V) v : E) = T v :=
     coe_compress_apply_of_invariant (T := T) (V := V) hV v
   simpa [hproj] using hv_eq
-theorem isCompactOperator_compress (T : E →L[𝕜] E) (hTc : IsCompactOperator (T : E → E))
+lemma isCompactOperator_compress (T : E →L[𝕜] E) (hTc : IsCompactOperator (T : E → E))
     (V : Submodule 𝕜 E) [CompleteSpace V] :
     IsCompactOperator (compress (T := T) (V := V) : V → V) := by
   have h1 : IsCompactOperator (fun v : V => T (V.subtypeL v)) :=
@@ -88,7 +88,7 @@ section CompleteSpace
 variable [CompleteSpace E]
 
 set_option backward.isDefEq.respectTransparency false in
-theorem isSelfAdjoint_compress (T : E →L[𝕜] E) (hT : IsSelfAdjoint T)
+lemma isSelfAdjoint_compress (T : E →L[𝕜] E) (hT : IsSelfAdjoint T)
     (V : Submodule 𝕜 E) [CompleteSpace V] :
     IsSelfAdjoint (compress (T := T) (V := V)) := by
   have hT' : T† = T := by
@@ -97,7 +97,7 @@ theorem isSelfAdjoint_compress (T : E →L[𝕜] E) (hT : IsSelfAdjoint T)
     simp [compress, ContinuousLinearMap.adjoint_comp, hT', Submodule.adjoint_subtypeL,
       Submodule.adjoint_orthogonalProjection, ContinuousLinearMap.comp_assoc]
   simpa [IsSelfAdjoint] using hAdj
-theorem invariant_orthogonalComplement_eigenspace_of_isSelfAdjoint
+lemma invariant_orthogonalComplement_eigenspace_of_isSelfAdjoint
     (T : E →L[𝕜] E) (hT : IsSelfAdjoint T) (μ : 𝕜) :
     ∀ v : E,
       v ∈ (Module.End.eigenspace (T : E →ₗ[𝕜] E) μ)ᗮ →

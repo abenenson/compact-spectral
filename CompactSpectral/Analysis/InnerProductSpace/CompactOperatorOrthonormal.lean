@@ -55,7 +55,7 @@ private lemma injective_topDualPairing_flip : Function.Injective (topDualPairing
   exact sub_eq_zero.mp this
 
 /-- An orthonormal sequence converges to `0` in the weak topology (`WeakSpace`). -/
-theorem tendsto_zero_weakSpace_of_orthonormal {e : ℕ → E} (he : Orthonormal 𝕜 e) :
+lemma tendsto_zero_weakSpace_of_orthonormal {e : ℕ → E} (he : Orthonormal 𝕜 e) :
     Tendsto (let ew : ℕ → WeakSpace 𝕜 E := fun n => e n; ew) atTop (𝓝 (0 : WeakSpace 𝕜 E)) := by
   let ew : ℕ → WeakSpace 𝕜 E := fun n => e n
   change Tendsto ew atTop (𝓝 (0 : WeakSpace 𝕜 E))
@@ -100,7 +100,7 @@ theorem tendsto_zero_weakSpace_of_orthonormal {e : ℕ → E} (he : Orthonormal 
   simpa [ew, topDualPairing_apply, h0] using this
 
 /-- A compact operator sends an orthonormal sequence to a strongly-null sequence. -/
-theorem tendsto_zero_apply_of_isCompactOperator_of_orthonormal (T : E →L[𝕜] E)
+lemma tendsto_zero_apply_of_isCompactOperator_of_orthonormal (T : E →L[𝕜] E)
     (hTc : IsCompactOperator (T : E → E)) {e : ℕ → E} (he : Orthonormal 𝕜 e) :
     Tendsto (fun n => T (e n)) atTop (𝓝 (0 : E)) := by
   let ew : ℕ → WeakSpace 𝕜 E := fun n => e n
@@ -124,7 +124,7 @@ theorem tendsto_zero_apply_of_isCompactOperator_of_orthonormal (T : E →L[𝕜]
   simpa [ew] using hT
 
 /-- A compact operator sends an orthonormal sequence to a norm-null sequence. -/
-theorem tendsto_norm_apply_of_isCompactOperator_of_orthonormal (T : E →L[𝕜] E)
+lemma tendsto_norm_apply_of_isCompactOperator_of_orthonormal (T : E →L[𝕜] E)
     (hTc : IsCompactOperator (T : E → E)) {e : ℕ → E} (he : Orthonormal 𝕜 e) :
     Tendsto (fun n => ‖T (e n)‖) atTop (𝓝 (0 : ℝ)) := by
   have hT : Tendsto (fun n => T (e n)) atTop (𝓝 (0 : E)) :=

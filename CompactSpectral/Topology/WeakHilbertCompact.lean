@@ -46,7 +46,7 @@ to the weak topology on `E` (`WeakSpace 𝕜 E`). -/
 noncomputable def weakDualToWeak : WeakDual 𝕜 E → WeakSpace 𝕜 E :=
   fun f => (InnerProductSpace.toDual 𝕜 E).symm (WeakDual.toStrongDual f)
 
-theorem continuous_weakToWeakDual : Continuous (weakToWeakDual (𝕜 := 𝕜) (E := E)) := by
+lemma continuous_weakToWeakDual : Continuous (weakToWeakDual (𝕜 := 𝕜) (E := E)) := by
   refine WeakDual.continuous_of_continuous_eval (𝕜 := 𝕜) (E := E)
     (g := weakToWeakDual (𝕜 := 𝕜) (E := E)) ?_
   intro y
@@ -135,7 +135,7 @@ private lemma eval_weakDualToWeak (l : E →L[𝕜] 𝕜) (f : WeakDual 𝕜 E) 
     _ = (starRingEnd 𝕜) (f ((InnerProductSpace.toDual 𝕜 E).symm l)) := by
           exact (starRingEnd_apply (R := 𝕜) (f ((InnerProductSpace.toDual 𝕜 E).symm l))).symm
 
-theorem continuous_weakDualToWeak : Continuous (weakDualToWeak (𝕜 := 𝕜) (E := E)) := by
+lemma continuous_weakDualToWeak : Continuous (weakDualToWeak (𝕜 := 𝕜) (E := E)) := by
   refine WeakBilin.continuous_of_continuous_eval (B := (topDualPairing 𝕜 E).flip)
     (g := weakDualToWeak (𝕜 := 𝕜) (E := E)) ?_
   intro l
