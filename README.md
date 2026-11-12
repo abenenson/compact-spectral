@@ -1,5 +1,7 @@
 # compact-spectral
 
+[![Lean Action CI](https://github.com/abenenson/compact-spectral/actions/workflows/lean_action_ci.yml/badge.svg?branch=main)](https://github.com/abenenson/compact-spectral/actions/workflows/lean_action_ci.yml)
+
 Lean 4 proof of the **spectral theorem for compact self-adjoint operators**: a compact self-adjoint operator on a separable Hilbert space admits a Hilbert basis of eigenvectors.
 
 > **Build status:** Verified on Lean v4.29.1 with Mathlib. Zero sorries.
@@ -39,6 +41,19 @@ theorem CompactSelfAdjoint.exists_hilbertBasis_hasEigenvector_of_isCompactOperat
 ## Dependencies
 
 Lean 4 + [Mathlib](https://github.com/leanprover-community/mathlib4). No external dependencies.
+
+## Build
+
+```bash
+lake exe cache get
+lake build --wfail
+```
+
+CI builds the library with warnings treated as errors and compiles API documentation on pushes,
+pull requests, and manual runs. Documentation is available as the `api-docs` workflow artifact.
+To build it locally, run `./scripts/build-docs.sh`; the output is in `public-docs/docs/`.
+Optional GitHub Pages publication requires Pages to use GitHub Actions and the repository variable
+`PUBLISH_DOCS` to be `true`; publication then runs on pushes to `main`.
 
 For more detail on the internal organization of the development, see
 [`docs/overview.md`](docs/overview.md).

@@ -18,4 +18,6 @@ These stages separate reusable functional-analysis lemmas from the final spectra
 ## Verification
 
 The repository is pinned to Lean and Mathlib in `lean-toolchain` and `lake-manifest.json`.
-The public CI uses `leanprover/lean-action` and docgen.
+The public CI uses `leanprover/lean-action` for a build with warnings treated as errors, then
+compiles API documentation with doc-gen4 at the pinned Lean release. Every run uploads an
+`api-docs` artifact. GitHub Pages publication is optional; see the repository README.
